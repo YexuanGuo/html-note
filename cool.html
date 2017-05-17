@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>一些前端的冷知识~</title>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<style style="display:block" contentEditable>
+    body { color: blue }
+    .test{
+        border: 1px solid red;
+    }
+</style>
+
+<div class="test">
+
+</div>
+</body>
+</html>
+<script type="application/javascript">
+    //console.log显示模糊
+    var _log = console.log;
+    console.log = function() {
+        _log.call(console, '%c' + [].slice.call(arguments).join(' '), 'color:transparent;text-shadow:0 0 2px rgba(0,0,0,.8);');
+    };
+    console.log("看我Console.log干什么?????");
+    //console.log显示表格
+    var data = [{'品名': '杜雷斯', '数量': 4}, {'品名': '冈本', '数量': 3}];
+    console.table(data);
+
+    //禁止查看源代码
+    window.onload=function(){
+
+        document.onkeydown=function(){
+            var e=window.event||arguments[0];
+            if(e.keyCode==123){
+                alert("小样你想干嘛？看我的代码么!");
+                return false;
+            }else if((e.ctrlKey)&&(e.shiftKey)&&(e.keyCode==73)){
+                alert("还是不给你看。。");
+                return false;
+            }
+        };
+
+        document.oncontextmenu=function(){
+            clear();
+            location.reload();
+            return false;
+        }
+    }
+
+    function clear(){
+        Source=document.body.firstChild.data;
+        document.open();
+        document.close();
+        document.title="自强不息,厚德载物!";
+        document.body.innerHTML=Source;
+    }
+</script>
